@@ -1,20 +1,34 @@
 
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Building2, Users, Target } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Building2, Users, Target, Calendar } from "lucide-react";
+import { Customer, CustomerHealth, PriorityLevel } from "@/types/customer";
 
-interface CustomerProfileProps {
-  name: string;
-  industry: string;
-  objectives: string[];
-  contacts: Array<{
-    name: string;
-    role: string;
-    avatar?: string;
-  }>;
-}
+const healthColors: Record<CustomerHealth, string> = {
+  healthy: "bg-green-500",
+  "at-risk": "bg-yellow-500",
+  critical: "bg-red-500",
+};
 
-export const CustomerProfile = ({ name, industry, objectives, contacts }: CustomerProfileProps) => {
+const priorityColors: Record<PriorityLevel, string> = {
+  critical: "bg-red-500",
+  high: "bg-orange-500",
+  medium: "bg-blue-500",
+  low: "bg-gray-500",
+};
+
+interface CustomerProfileProps extends Omit<Customer, 'id' | 'businessMetrics' | 'featureAdoption'> {}
+
+export const CustomerProfile = ({ 
+  name, 
+  industry, 
+  objectives, 
+  contacts,
+  health,
+  priority,
+  renewalDate 
+}: CustomerProfileProps) => {
   return (
     <Card className="p-6 animate-fade-up">
       <div className="flex items-start justify-between">
@@ -24,6 +38,20 @@ export const CustomerProfile = ({ name, industry, objectives, contacts }: Custom
             <Building2 className="w-4 h-4 mr-2" />
             <span>{industry}</span>
           </div>
+        </div>
+        <div className="flex gap-2">
+          <Badge 
+            variant="secondary" 
+            className={`${healthColors[health]} text-white`}
+          >
+            {health}
+          </Badge>
+          <Badge 
+            variant="secondary" 
+            className={`${priorityColors[priority]} text-white`}
+          >
+            {priority}
+          </Badge>
         </div>
       </div>
 
@@ -37,6 +65,14 @@ export const CustomerProfile = ({ name, industry, objectives, contacts }: Custom
             <li key={index}>{objective}</li>
           ))}
         </ul>
+      </div>
+
+      <div className="mb-6">
+        <div className="flex items-center mb-2">
+          <Calendar className="w-4 h-4 mr-2" />
+          <h3 className="font-medium">Renewal Date</h3>
+        </div>
+        <p className="text-sm text-muted-foreground ml-6">{renewalDate}</p>
       </div>
 
       <div>
@@ -54,6 +90,9 @@ export const CustomerProfile = ({ name, industry, objectives, contacts }: Custom
               <div>
                 <div className="text-sm font-medium">{contact.name}</div>
                 <div className="text-xs text-muted-foreground">{contact.role}</div>
+                {contact.email && (
+                  <div className="text-xs text-muted-foreground">{contact.email}</div>
+                )}
               </div>
             </div>
           ))}

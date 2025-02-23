@@ -1,0 +1,47 @@
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ArrowDown, ArrowUp, Minus } from "lucide-react";
+import { BusinessMetric } from "@/types/customer";
+
+interface BusinessMetricsProps {
+  metrics: BusinessMetric[];
+}
+
+export const BusinessMetrics = ({ metrics }: BusinessMetricsProps) => {
+  const getTrendIcon = (trend: "up" | "down" | "stable") => {
+    switch (trend) {
+      case "up":
+        return <ArrowUp className="w-4 h-4 text-green-500" />;
+      case "down":
+        return <ArrowDown className="w-4 h-4 text-red-500" />;
+      default:
+        return <Minus className="w-4 h-4 text-gray-500" />;
+    }
+  };
+
+  return (
+    <Card className="animate-fade-up">
+      <CardHeader>
+        <CardTitle className="text-lg">Business Impact Metrics</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {metrics.map((metric, index) => (
+            <div key={index} className="p-4 border rounded-lg bg-card">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-muted-foreground">
+                  {metric.name}
+                </span>
+                {getTrendIcon(metric.trend)}
+              </div>
+              <div className="text-2xl font-bold">{metric.value}</div>
+              <div className="text-xs text-muted-foreground mt-1">
+                Target: {metric.target}
+              </div>
+            </div>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
