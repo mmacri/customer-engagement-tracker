@@ -1,69 +1,115 @@
-# Welcome to your Lovable project
+Customer Engagement Tracker – README
 
-## Project info
+📌 Overview
 
-**URL**: https://lovable.dev/projects/46dce32d-9ff6-4742-8085-75c0b612da99
+Welcome to the Customer Engagement Tracker—a powerful, AI-driven framework designed for Technical Account Managers (TAMs) and Customer Success Specialists (CSS) to streamline customer engagement, optimize adoption, mitigate risks, and drive business value.
 
-## How can I edit this code?
+This GitHub repository houses the core files and documentation related to the Customer Engagement Tracker demo, as showcased on the interactive site.
 
-There are several ways of editing your application.
+🚀 What This Tracker Does
 
-**Use Lovable**
+The Customer Engagement Tracker is built to help TAMs and CSS teams:
+	•	Prioritize customer interactions based on business impact, renewal risk, and adoption urgency.
+	•	Automate Quarterly Business Reviews (QBRs) by generating reports that summarize adoption trends, ROI, and engagement plans.
+	•	Predict customer retention risks using AI-powered modeling.
+	•	Identify expansion opportunities by mapping customer maturity against cross-sell/upsell potential.
+	•	Provide AI-driven recommendations for next best actions (NBA) to drive engagement.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/46dce32d-9ff6-4742-8085-75c0b612da99) and start prompting.
+The system includes two versions:
+	•	🔹 Internal Version (For TAMs & Sales Teams) → Includes revenue impact, expansion pipeline, risk analysis, and competitor insights.
+	•	🔹 Customer-Facing Version → Focuses on success milestones, adoption progress, and business value realization.
 
-Changes made via Lovable will be committed automatically to this repo.
+📖 How to Use the Customer Engagement Tracker
 
-**Use your preferred IDE**
+1️⃣ Step 1: Enter Customer Details
+	•	Start by adding customer information, including:
+	•	Company Name, Industry, ARR, Key Stakeholders.
+	•	Subscription Plan, Renewal Date, Expansion Potential.
+	•	Current Tech Stack (for competitive analysis).
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+2️⃣ Step 2: Engagement Prioritization & Risk Assessment
+	•	The AI-driven prioritization model categorizes customers based on:
+	•	Engagement Priority Score → Calculated from ARR, renewal status, adoption, and risk factors.
+	•	Churn Risk vs. Expansion Potential Matrix → AI classifies accounts into:
+	•	🚨 High Risk – High Value → Immediate intervention required.
+	•	💡 High Value – Low Risk → Strategic upsell opportunity.
+	•	⚠️ Low Adoption – High ARR → Adoption workshop needed.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+3️⃣ Step 3: Generate Quarterly Business Review (QBR)
+	•	One-click QBR generation:
+	•	Summarizes key adoption trends, ROI impact, and engagement recommendations.
+	•	Auto-fills presentation slides with customer-specific data.
+	•	Generates AI-recommended talking points for customer conversations.
 
-Follow these steps:
+4️⃣ Step 4: Track Ongoing Progress & Optimize Engagement
+	•	Use the Predictive Success Dashboard to monitor:
+	•	Feature adoption rates and usage patterns.
+	•	Risk indicators and churn likelihood.
+	•	Customer sentiment (NPS, survey data).
+	•	Get AI-driven recommendations on next steps, such as:
+	•	Scheduling executive alignment meetings.
+	•	Assigning a product specialist to drive feature adoption.
+	•	Planning contract expansion discussions.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+📊 What’s Included in This Repository
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+✅ Live Engagement Tracker Template – (Google Sheets / Airtable / Notion)
+✅ Quarterly Business Review (QBR) Template – (Google Slides / PowerPoint)
+✅ Predictive Health Score Model – (Excel/Python-based)
+✅ Best Practices Guide for TAMs – (PDF & Markdown Documentation)
+✅ Case Study Examples – (Real-world engagement scenarios)
+✅ Churn Prevention Playbook – (AI-driven risk intervention strategies)
 
-# Step 3: Install the necessary dependencies.
-npm i
+🔮 What’s NOT Included in This Demo (But Available for Full Implementation)
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+This demo showcases the core engagement tracker but does not include:
+	•	🔍 Competitive Benchmarking Tool → Analyzes customer tech stack and compares feature adoption across competitors.
+	•	🧠 AI Chatbot Assistant for TAMs → Provides real-time recommendations for handling customer objections, renewal risks, and expansion strategies.
+	•	📡 Automated CRM Integration → Can be connected to Salesforce, HubSpot, or Gainsight to sync customer data.
+	•	📈 AI-Powered Renewal Forecasting → Uses machine learning models to predict likelihood of renewal based on engagement patterns.
+	•	🔗 Customer Self-Service Portal → A dedicated customer dashboard where they can track their own adoption progress, request training, and receive AI-driven success insights.
 
-**Edit a file directly in GitHub**
+If you’re interested in these advanced features, check out the roadmap for future updates!
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+🛠️ Installation & Setup
 
-**Use GitHub Codespaces**
+🔹 Option 1: Use the Web Version
+	1.	Go to Your Website URL
+	2.	Click “Launch Demo” to explore the tracker.
+	3.	Adjust customer engagement metrics and see real-time AI-generated insights.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+🔹 Option 2: Use the GitHub Version
 
-## What technologies are used for this project?
+1️⃣ Clone the Repository
 
-This project is built with .
+git clone https://github.com/mmacri/engageflow-master.git
+cd customer-engagement-tracker
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+2️⃣ Open the Templates
+	•	The Google Sheets/Airtable template can be accessed in the /templates folder.
+	•	The PowerPoint QBR slides are in the /resources folder.
 
-## How can I deploy this project?
+3️⃣ Customize & Deploy
+	•	Modify the engagement tracker to fit your organization’s needs.
+	•	(Optional) Connect it to your CRM for automated customer data syncing.
 
-Simply open [Lovable](https://lovable.dev/projects/46dce32d-9ff6-4742-8085-75c0b612da99) and click on Share -> Publish.
+📬 Get Involved
 
-## I want to use a custom domain - is that possible?
+This project is open-source and designed to help TAMs and CSS professionals build stronger customer relationships. If you have ideas for improvements or want to contribute:
+	•	Submit an issue with your feedback.
+	•	Fork the repo and submit a pull request.
+	•	Reach out via LinkedIn or email for collaboration.
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+📌 Final Thoughts
+
+The Customer Engagement Tracker is designed to simplify account management, increase renewals, and drive revenue expansion. Whether you’re a Technical Account Manager, Customer Success Specialist, or Sales Executive, this framework provides the tools you need to deliver real customer value and maximize retention.
+
+If you’re a hiring manager exploring this, check out the interactive demo on my website to see how this can streamline your customer success operations.
+
+🔗 Website: Your Website URL
+
+🔗 GitHub Repo: GitHub URL
+
+📩 Contact: [Your Email]
+
+🚀 Ready to Improve Customer Engagement? Start Here → Live Demo
