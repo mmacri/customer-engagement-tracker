@@ -2,6 +2,7 @@
 import { CustomerProfile } from "@/components/CustomerProfile";
 import { EngagementStage } from "@/components/EngagementStage";
 import { BusinessMetrics } from "@/components/BusinessMetrics";
+import { RenewalRiskCard } from "@/components/RenewalRiskCard";
 import { Customer } from "@/types/customer";
 
 const Index = () => {
@@ -9,7 +10,7 @@ const Index = () => {
     id: "1",
     name: "TechCorp Solutions",
     industry: "Enterprise Software",
-    health: "healthy",
+    health: "at-risk",
     priority: "high",
     objectives: [
       "Improve customer satisfaction by 25%",
@@ -52,6 +53,32 @@ const Index = () => {
     ],
     featureAdoption: 65,
     renewalDate: "2024-12-31",
+    renewalRisk: {
+      level: "medium",
+      score: 65,
+      factors: [
+        "Decreasing feature adoption trend",
+        "Limited engagement with new features",
+        "Support ticket volume above target",
+      ],
+      recommendations: [
+        "Schedule executive business review",
+        "Conduct feature adoption workshop",
+        "Implement customer feedback program",
+      ],
+    },
+    healthTrends: [
+      {
+        date: "2024-03-01",
+        score: 85,
+        factors: {
+          engagement: 80,
+          adoption: 85,
+          satisfaction: 90,
+        },
+      },
+      // Additional trend data points would go here
+    ],
   };
 
   const stages = [
@@ -96,7 +123,10 @@ const Index = () => {
           </div>
 
           <div className="grid gap-8">
-            <CustomerProfile {...customerData} />
+            <div className="grid md:grid-cols-2 gap-8">
+              <CustomerProfile {...customerData} />
+              <RenewalRiskCard risk={customerData.renewalRisk!} />
+            </div>
             <BusinessMetrics metrics={customerData.businessMetrics} />
             
             <div className="grid gap-6">
