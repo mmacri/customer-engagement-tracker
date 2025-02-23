@@ -28,4 +28,8 @@ export interface Customer {
   businessMetrics: BusinessMetric[];
   featureAdoption: number;
   renewalDate: string;
+  lastQBRDate?: string;
+  nextQBRDate?: string;
+  contractValue?: number;
+  customerSince?: string;
 }
