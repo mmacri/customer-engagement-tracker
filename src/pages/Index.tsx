@@ -3,6 +3,7 @@ import { CustomerProfile } from "@/components/CustomerProfile";
 import { EngagementStage } from "@/components/EngagementStage";
 import { BusinessMetrics } from "@/components/BusinessMetrics";
 import { RenewalRiskCard } from "@/components/RenewalRiskCard";
+import { HealthTrendChart } from "@/components/HealthTrendChart";
 import { Customer } from "@/types/customer";
 
 const Index = () => {
@@ -69,6 +70,24 @@ const Index = () => {
     },
     healthTrends: [
       {
+        date: "2024-01-01",
+        score: 82,
+        factors: {
+          engagement: 85,
+          adoption: 80,
+          satisfaction: 82,
+        },
+      },
+      {
+        date: "2024-02-01",
+        score: 78,
+        factors: {
+          engagement: 75,
+          adoption: 82,
+          satisfaction: 78,
+        },
+      },
+      {
         date: "2024-03-01",
         score: 85,
         factors: {
@@ -77,7 +96,15 @@ const Index = () => {
           satisfaction: 90,
         },
       },
-      // Additional trend data points would go here
+      {
+        date: "2024-04-01",
+        score: 75,
+        factors: {
+          engagement: 72,
+          adoption: 76,
+          satisfaction: 77,
+        },
+      },
     ],
   };
 
@@ -128,6 +155,7 @@ const Index = () => {
               <RenewalRiskCard risk={customerData.renewalRisk!} />
             </div>
             <BusinessMetrics metrics={customerData.businessMetrics} />
+            <HealthTrendChart trends={customerData.healthTrends!} />
             
             <div className="grid gap-6">
               {stages.map((stage, index) => (
