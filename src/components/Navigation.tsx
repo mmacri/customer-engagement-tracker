@@ -1,7 +1,7 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Menu, X } from "lucide-react";
 
 interface NavItem {
   id: string;
@@ -9,6 +9,8 @@ interface NavItem {
 }
 
 export const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const navItems: NavItem[] = [
     { id: "profile", label: "Customer Profile" },
     { id: "metrics", label: "Business Metrics" },
@@ -22,6 +24,7 @@ export const Navigation = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+    setIsOpen(false);
   };
 
   const scrollToTop = () => {
@@ -31,26 +34,55 @@ export const Navigation = () => {
   return (
     <>
       <nav className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
-        <div className="container flex h-14 items-center">
-          <div className="mr-4 hidden md:flex">
-            <div className="mr-6 flex items-center space-x-2">
-              <span className="font-bold">Navigation</span>
-            </div>
-            <nav className="flex items-center space-x-6 text-sm font-medium">
+        <div className="container flex h-14 items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <span className="font-bold">Navigation</span>
+          </div>
+
+          {/* Mobile menu button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
+
+          {/* Desktop navigation */}
+          <div className="hidden md:flex items-center space-x-6 text-sm font-medium">
+            {navItems.map((item) => (
+              <Button
+                key={item.id}
+                variant="ghost"
+                className="text-foreground/60 hover:text-foreground"
+                onClick={() => scrollToSection(item.id)}
+              >
+                {item.label}
+              </Button>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile navigation */}
+        {isOpen && (
+          <div className="md:hidden border-t">
+            <div className="container py-2 space-y-1">
               {navItems.map((item) => (
                 <Button
                   key={item.id}
                   variant="ghost"
-                  className="text-foreground/60 hover:text-foreground"
+                  className="w-full justify-start text-foreground/60 hover:text-foreground"
                   onClick={() => scrollToSection(item.id)}
                 >
                   {item.label}
                 </Button>
               ))}
-            </nav>
+            </div>
           </div>
-        </div>
+        )}
       </nav>
+
       <Button
         variant="outline"
         size="icon"
