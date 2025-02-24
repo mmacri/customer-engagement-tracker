@@ -1,12 +1,18 @@
-
 import { CustomerProfile } from "@/components/CustomerProfile";
 import { EngagementStage } from "@/components/EngagementStage";
 import { BusinessMetrics } from "@/components/BusinessMetrics";
 import { RenewalRiskCard } from "@/components/RenewalRiskCard";
 import { HealthTrendChart } from "@/components/HealthTrendChart";
+import { ROIDashboard } from "@/components/ROIDashboard";
+import { QBRSummary } from "@/components/QBRSummary";
 import { Customer } from "@/types/customer";
+import { useState } from "react";
+import { Badge } from "@/components/ui/badge";
 
 const Index = () => {
+  // For demo purposes, we'll use a state to toggle between views
+  const [userRole, setUserRole] = useState<"internal" | "customer">("internal");
+
   const customerData: Customer = {
     id: "1",
     name: "TechCorp Solutions",
@@ -106,6 +112,73 @@ const Index = () => {
         },
       },
     ],
+    qbrData: [
+      {
+        date: "2024-03-15",
+        metrics: [
+          {
+            name: "Feature Adoption",
+            current: 75,
+            previous: 65,
+            target: 85,
+            trend: "up"
+          },
+          {
+            name: "Active Users",
+            current: 1250,
+            previous: 1100,
+            target: 1500,
+            trend: "up"
+          },
+          {
+            name: "Support Tickets",
+            current: 45,
+            previous: 65,
+            target: 40,
+            trend: "down"
+          },
+          {
+            name: "Response Time",
+            current: 2.5,
+            previous: 3.1,
+            target: 2,
+            trend: "up"
+          }
+        ],
+        summary: "Strong quarter with improvements across key metrics. Feature adoption and active users showing positive trends. Support ticket volume decreased while maintaining good response times.",
+        nextSteps: [
+          "Schedule advanced feature training sessions",
+          "Review expansion opportunities in Q2",
+          "Implement feedback collection program"
+        ],
+        attendees: [
+          "Sarah Johnson",
+          "Michael Chen",
+          "Alex Thompson",
+          "Maria Garcia"
+        ]
+      }
+    ],
+    roiMetrics: [
+      {
+        category: "Time Savings",
+        saved: 250000,
+        potential: 400000,
+        description: "Automation of key workflows"
+      },
+      {
+        category: "Cost Reduction",
+        saved: 180000,
+        potential: 300000,
+        description: "Operational efficiency improvements"
+      },
+      {
+        category: "Revenue Impact",
+        saved: 500000,
+        potential: 750000,
+        description: "New revenue opportunities enabled"
+      }
+    ]
   };
 
   const stages = [
@@ -142,23 +215,50 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <div className="container py-8">
         <div className="max-w-5xl mx-auto space-y-8">
-          <div className="text-center mb-12 animate-fade-up">
-            <h1 className="text-4xl font-semibold mb-4">Customer Engagement Tracker</h1>
-            <p className="text-muted-foreground">
-              Monitor customer success, track engagement, and drive business impact
-            </p>
+          <div className="flex items-center justify-between mb-12 animate-fade-up">
+            <div>
+              <h1 className="text-4xl font-semibold mb-4">Customer Engagement Tracker</h1>
+              <p className="text-muted-foreground">
+                Monitor customer success, track engagement, and drive business impact
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <Badge
+                variant={userRole === "internal" ? "default" : "outline"}
+                className="cursor-pointer"
+                onClick={() => setUserRole("internal")}
+              >
+                Internal View
+              </Badge>
+              <Badge
+                variant={userRole === "customer" ? "default" : "outline"}
+                className="cursor-pointer"
+                onClick={() => setUserRole("customer")}
+              >
+                Customer View
+              </Badge>
+            </div>
           </div>
 
           <div className="grid gap-8">
             <div className="grid md:grid-cols-2 gap-8">
               <CustomerProfile {...customerData} />
-              <RenewalRiskCard risk={customerData.renewalRisk!} />
+              {userRole === "internal" && (
+                <RenewalRiskCard risk={customerData.renewalRisk!} />
+              )}
             </div>
+            
             <BusinessMetrics metrics={customerData.businessMetrics} />
             <HealthTrendChart trends={customerData.healthTrends!} />
             
+            {userRole === "internal" && customerData.qbrData && (
+              <QBRSummary qbrData={customerData.qbrData[0]} />
+            )}
+            
+            <ROIDashboard metrics={customerData.roiMetrics!} />
+            
             <div className="grid gap-6">
-              {stages.map((stage, index) => (
+              {userRole === "internal" && stages.map((stage, index) => (
                 <EngagementStage key={index} {...stage} />
               ))}
             </div>

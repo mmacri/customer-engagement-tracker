@@ -1,8 +1,31 @@
-
 export type CustomerHealth = "healthy" | "at-risk" | "critical";
 export type PriorityLevel = "critical" | "high" | "medium" | "low";
 export type RiskFactor = "high" | "medium" | "low";
 export type TrendDirection = "improving" | "stable" | "declining";
+export type UserRole = "internal" | "customer";
+
+export interface QBRMetric {
+  name: string;
+  current: number;
+  previous: number;
+  target: number;
+  trend: "up" | "down" | "stable";
+}
+
+export interface ROIMetric {
+  category: string;
+  saved: number;
+  potential: number;
+  description: string;
+}
+
+export interface QBRData {
+  date: string;
+  metrics: QBRMetric[];
+  summary: string;
+  nextSteps: string[];
+  attendees: string[];
+}
 
 export interface BusinessMetric {
   name: string;
@@ -53,4 +76,6 @@ export interface Customer {
   customerSince?: string;
   renewalRisk?: RenewalRisk;
   healthTrends?: HealthTrend[];
+  qbrData?: QBRData[];
+  roiMetrics?: ROIMetric[];
 }
