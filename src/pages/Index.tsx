@@ -1,3 +1,4 @@
+
 import { CustomerProfile } from "@/components/CustomerProfile";
 import { EngagementStage } from "@/components/EngagementStage";
 import { BusinessMetrics } from "@/components/BusinessMetrics";
@@ -6,6 +7,7 @@ import { HealthTrendChart } from "@/components/HealthTrendChart";
 import { ROIDashboard } from "@/components/ROIDashboard";
 import { QBRSummary } from "@/components/QBRSummary";
 import { StatusReportCard } from "@/components/StatusReport";
+import { Navigation } from "@/components/Navigation";
 import { Customer } from "@/types/customer";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -259,6 +261,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Navigation />
       <div className="container py-8">
         <div className="max-w-5xl mx-auto space-y-8">
           <div className="flex items-center justify-between mb-12 animate-fade-up">
@@ -287,28 +290,39 @@ const Index = () => {
           </div>
 
           <div className="grid gap-8">
-            <div className="grid md:grid-cols-2 gap-8">
+            <div id="profile" className="grid md:grid-cols-2 gap-8">
               <CustomerProfile {...customerData} />
               {userRole === "internal" && (
                 <RenewalRiskCard risk={customerData.renewalRisk!} />
               )}
             </div>
             
-            <BusinessMetrics metrics={customerData.businessMetrics} />
-            <HealthTrendChart trends={customerData.healthTrends!} />
+            <div id="metrics">
+              <BusinessMetrics metrics={customerData.businessMetrics} />
+            </div>
+
+            <div id="health">
+              <HealthTrendChart trends={customerData.healthTrends!} />
+            </div>
             
             {customerData.statusReports && customerData.statusReports[0] && (
-              <StatusReportCard 
-                report={customerData.statusReports[0]} 
-                userRole={userRole}
-              />
+              <div id="status">
+                <StatusReportCard 
+                  report={customerData.statusReports[0]} 
+                  userRole={userRole}
+                />
+              </div>
             )}
             
             {userRole === "internal" && customerData.qbrData && (
-              <QBRSummary qbrData={customerData.qbrData[0]} />
+              <div id="qbr">
+                <QBRSummary qbrData={customerData.qbrData[0]} />
+              </div>
             )}
             
-            <ROIDashboard metrics={customerData.roiMetrics!} />
+            <div id="roi">
+              <ROIDashboard metrics={customerData.roiMetrics!} />
+            </div>
             
             <div className="grid gap-6">
               {userRole === "internal" && stages.map((stage, index) => (
