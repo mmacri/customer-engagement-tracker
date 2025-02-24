@@ -27,6 +27,25 @@ export interface QBRData {
   attendees: string[];
 }
 
+export type ActionStatus = "completed" | "in-progress" | "pending" | "blocked";
+
+export interface StatusReportItem {
+  title: string;
+  description: string;
+  status: ActionStatus;
+  owner: string;
+  dueDate: string;
+  priority: PriorityLevel;
+}
+
+export interface StatusReport {
+  weekEnding: string;
+  accomplishments: string[];
+  actionItems: StatusReportItem[];
+  risks: string[];
+  nextSteps: string[];
+}
+
 export interface BusinessMetric {
   name: string;
   value: number;
@@ -78,4 +97,5 @@ export interface Customer {
   healthTrends?: HealthTrend[];
   qbrData?: QBRData[];
   roiMetrics?: ROIMetric[];
+  statusReports?: StatusReport[];
 }

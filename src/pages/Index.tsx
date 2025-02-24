@@ -5,12 +5,12 @@ import { RenewalRiskCard } from "@/components/RenewalRiskCard";
 import { HealthTrendChart } from "@/components/HealthTrendChart";
 import { ROIDashboard } from "@/components/ROIDashboard";
 import { QBRSummary } from "@/components/QBRSummary";
+import { StatusReportCard } from "@/components/StatusReport";
 import { Customer } from "@/types/customer";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 
 const Index = () => {
-  // For demo purposes, we'll use a state to toggle between views
   const [userRole, setUserRole] = useState<"internal" | "customer">("internal");
 
   const customerData: Customer = {
@@ -178,6 +178,52 @@ const Index = () => {
         potential: 750000,
         description: "New revenue opportunities enabled"
       }
+    ],
+    statusReports: [
+      {
+        weekEnding: "2024-03-22",
+        accomplishments: [
+          "Completed phase 1 of feature implementation",
+          "Conducted user training for 3 departments",
+          "Achieved 85% adoption rate in core features"
+        ],
+        actionItems: [
+          {
+            title: "Complete User Training",
+            description: "Finish remaining department training sessions",
+            status: "in-progress",
+            owner: "Sarah Johnson",
+            dueDate: "2024-03-29",
+            priority: "high"
+          },
+          {
+            title: "Feature Integration",
+            description: "Integration with existing workflow systems",
+            status: "pending",
+            owner: "Michael Chen",
+            dueDate: "2024-04-05",
+            priority: "medium"
+          },
+          {
+            title: "Performance Review",
+            description: "Analyze system performance metrics",
+            status: "completed",
+            owner: "Alex Thompson",
+            dueDate: "2024-03-20",
+            priority: "low"
+          }
+        ],
+        risks: [
+          "Integration timeline may be affected by legacy system dependencies",
+          "Resource constraints in IT department",
+          "Potential data migration challenges"
+        ],
+        nextSteps: [
+          "Schedule remaining training sessions",
+          "Begin phase 2 of feature rollout",
+          "Review integration timeline with IT team"
+        ]
+      }
     ]
   };
 
@@ -250,6 +296,13 @@ const Index = () => {
             
             <BusinessMetrics metrics={customerData.businessMetrics} />
             <HealthTrendChart trends={customerData.healthTrends!} />
+            
+            {customerData.statusReports && customerData.statusReports[0] && (
+              <StatusReportCard 
+                report={customerData.statusReports[0]} 
+                userRole={userRole}
+              />
+            )}
             
             {userRole === "internal" && customerData.qbrData && (
               <QBRSummary qbrData={customerData.qbrData[0]} />
