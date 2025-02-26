@@ -5,7 +5,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/customer-engagement-tracker/", // Update this to match your repository name
+  base: "/customer-engagement-tracker/",
   server: {
     host: "::",
     port: 8080,
@@ -15,5 +15,9 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  build: {
+    outDir: "dist",
+    sourcemap: true,
   },
 });
